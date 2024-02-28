@@ -1,0 +1,12 @@
+.navbar{
+    padding-left: 20px;
+    height: 100px;
+    background-color: #160C28;
+    text-align: left;
+    color: aliceblue;
+    align-items: center;
+}
+.text-filter{
+    padding-top: 30px;
+    text-align: center;
+}
