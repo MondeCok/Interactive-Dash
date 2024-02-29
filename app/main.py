@@ -10,6 +10,28 @@ df['Ship Date'] = pd.to_datetime(df['Ship Date'])
 
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+app.title ='Interactive Dashboard by Ahmad'
+app.index_string = '''
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        {%metas%}
+        <title>{%title%}</title>
+        {%favicon%}
+        {%css%}
+    </head>
+    <body>
+        {%app_entry%}
+        <footer>
+            {%config%}
+            {%scripts%}
+            {%renderer%}
+        </footer>
+    </body>
+</html>
+'''
+
 date_picker = html.Div([
         dmc.DatePicker(
             id='date-picker-start',
@@ -288,4 +310,4 @@ def relasion_chart(start_date, end_date, region, category):
     return fig
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8050)
