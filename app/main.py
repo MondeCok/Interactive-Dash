@@ -1,5 +1,4 @@
 import pandas as pd 
-import dash 
 import plotly.express as px
 from dash import dcc, Dash, Output, Input, html, callback
 import dash_bootstrap_components as dbc
@@ -126,7 +125,9 @@ def bar_plot_categories(start_date, end_date, region):
         pass
     
     filtered_df = filtered_df.groupby(by = ["Category"], as_index = False)["Sales"].sum()
-    fig = px.bar(filtered_df, x = "Category", y = "Sales", text = ['${:,.2f}'.format(x) for x in filtered_df["Sales"]],
+    fig = px.bar(filtered_df, x = "Category", y = "Sales",
+                 title='Total Sales by Category',
+                 text = ['${:,.2f}'.format(x) for x in filtered_df["Sales"]],
                  template = "plotly_white")
     
     return fig
@@ -145,7 +146,9 @@ def pie_plot_categories(start_date, end_date, region):
     else:
         pass
     
-    fig = px.pie(filtered_df, values = "Sales", names = "Category", template = "plotly_white", hole = 0.5)
+    fig = px.pie(filtered_df, values = "Sales",
+                 title='Category Wise Sales',
+                 names = "Category", template = "plotly_white", hole = 0.5)
     fig.update_traces(text = filtered_df["Category"], textposition = "outside")
     fig.update_layout(showlegend=False)
     
@@ -171,7 +174,9 @@ def pie_plot_subcat(start_date, end_date, region, category):
     else:
         pass
     
-    fig = px.pie(filtered_df, values = "Sales", names = "Sub-Category", template = "plotly_white", hole = 0.5)
+    fig = px.pie(filtered_df, values = "Sales",
+                 title='Sales of Goods',
+                 names = "Sub-Category", template = "plotly_white", hole = 0.5)
     fig.update_traces(text = filtered_df["Sub-Category"], textposition = "outside")
     fig.update_layout(showlegend=False)
     
@@ -191,7 +196,9 @@ def pie_plot_region(start_date, end_date, category):
     else:
         pass
     
-    fig = px.pie(filtered_df, values = "Sales", names = "Region", hole = 0.5, template='plotly_white')
+    fig = px.pie(filtered_df, values = "Sales",
+                 title='Region Wise Sales',
+                 names = "Region", hole = 0.5, template='plotly_white')
     fig.update_traces(text = filtered_df["Region"], textposition = "outside")
     fig.update_layout(showlegend=False)
     
@@ -217,7 +224,9 @@ def pie_plot_segment(start_date, end_date, region, category):
     else:
         pass
     
-    fig = px.pie(filtered_df, values = "Sales", names = "Segment", hole = 0.5, template='plotly_white')
+    fig = px.pie(filtered_df, values = "Sales",
+                 title='Consumer Segmentation',
+                 names = "Segment", hole = 0.5, template='plotly_white')
     fig.update_traces(text = filtered_df["Segment"], textposition = "outside")
     fig.update_layout(showlegend=False)
     
