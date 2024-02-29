@@ -252,7 +252,9 @@ def treemap_plot(start_date, end_date, region, category):
     else:
         pass
     
-    fig = px.treemap(filtered_df, path = ["Region","Category","Sub-Category"], values = "Sales",hover_data = ["Sales"],
+    fig = px.treemap(filtered_df, path = ["Region","Category","Sub-Category"], values = "Sales",
+                     title='Profitability Segmentation Treemap',
+                     hover_data = ["Sales"],
                   color = "Sub-Category",
                   template='plotly_white')
     
